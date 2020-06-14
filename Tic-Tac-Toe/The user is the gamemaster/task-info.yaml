@@ -178,6 +178,14 @@ files:
     if __name__ == '__main__':
         TicTacToeTest('tictactoe.tictactoe').run_tests()
   learner_created: false
+- name: tictactoe/tictactoe.py
+  visible: true
+  text: |
+    # write your code here
+    print('X O X\n'
+          'O X O\n'
+          'X X O\n')
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/73/stages/400/implement
-status: Unchecked
+status: Solved
 record: -1
