@@ -241,6 +241,9 @@ files:
     board = TicTacToe(input())
     board.print_board()
   learner_created: true
+- name: tictactoe/tests.py
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/73/stages/401/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 3
