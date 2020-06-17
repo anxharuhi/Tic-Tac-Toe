@@ -242,6 +242,71 @@ files:
     if __name__ == '__main__':
         TicTacToeTest('tictactoe.tictactoe').run_tests()
   learner_created: false
+- name: tictactoe/tests.py
+  visible: true
+  text: |-
+    from tictactoe import TicTacToe
+    from colorama import Fore
+
+    test_win_cases = {'XXXOO__O_': 'X wins', 'XOXOXOXXO': 'X wins', 'XOOOXOXXO': 'O wins',
+                  'XOXOOXXXO': 'Draw', 'XO_OOX_X_': 'Game not finished', 'XO_XO_XOX': 'Impossible',
+                  '_O_X__X_X': 'Impossible', '_OOOO_X_X': 'Impossible'}
+    case_number = 1
+
+    for case in test_win_cases:
+        board = TicTacToe(case)
+        evaluate_result = board.evaluate_wins()
+        test_pass = Fore.RED + 'FAIL' + Fore.RESET
+        if evaluate_result == test_win_cases[case]:
+            test_pass = Fore.GREEN + 'PASS' + Fore.RESET
+        print(f'Case {case_number}\n'
+              f'----------------\n'
+              f'{test_pass}\n'
+              f' - Expected result: {test_win_cases[case]}\n'
+              f' - Actual result: {evaluate_result}\n',)
+        case_number += 1
+    # board = TicTacToe('XOXOXOXXO_')
+    # board.print_board()
+  learner_created: true
+- name: tictactoe/tictactoe.py
+  visible: true
+  text: "from string import Template\n\n\nclass TicTacToe:\n\n    def __init__(self,\
+    \ initial_state):\n        initial_state = list(initial_state)\n        initial_state.reverse()\n\
+    \        self.state = []\n        self.cell_count = {'X': 0, 'O': 0, '_': 0}\n\
+    \n        \n        for row in range(0, 3):\n            self.state.append([])\n\
+    \            for column in '':\n                self.state[row][column] = initial_state.pop()\n\
+    \                self.cell_count[self.state[row][column]] += 1\n        # self.state\
+    \ = {'n' + str(key): value for key, value in enumerate(iterable=list(initial_state),\
+    \ start=1)}\n\n    def print_board(self):\n        # pass\n        board_template\
+    \ = Template('| $A $B $C |')\n        print('---------')\n        for row in self.state:\n\
+    \            # pass\n            print(board_template.safe_substitute(self.state[row]))\n\
+    \        print('---------')\n        print(self.evaluate_wins())\n\n    def evaluate_wins(self):\n\
+    \        x_wins = 0\n        o_wins = 0\n        nc = Exception('Case not covered')\n\
+    \        # Determine how many lines have a 3 in a row of a character\n       \
+    \ for row in self.state:\n            if self.state[row]['A'] == self.state[row]['B']\
+    \ and self.state[row]['A'] == self.state[row]['C']:\n                if self.state[row]['A']\
+    \ == 'X':\n                    x_wins += 1\n                else:\n          \
+    \          o_wins += 1\n        for column in 'ABC':\n            if self.state[1][column]\
+    \ == self.state[2][column] and self.state[1][column] == self.state[3][column]:\n\
+    \                if self.state[1][column] == 'X':\n                    x_wins\
+    \ += 1\n                else:\n                    o_wins += 1\n        if self.state[1]['A']\
+    \ == self.state[2]['B'] and self.state[1]['A'] == self.state[3]['C']:\n      \
+    \      if self.state[1]['A'] == 'X':\n                x_wins += 1\n          \
+    \  else:\n                o_wins += 1\n        if self.state[1]['C'] == self.state[2]['B']\
+    \ and self.state[1]['A'] == self.state[3]['A']:\n            if self.state[3]['A']\
+    \ == 'X':\n                x_wins += 1\n            else:\n                o_wins\
+    \ += 1\n        # A game is in an impossible state if a player has more than 1\
+    \ extra move\n        # or if the board has multiple 3 in a rows.\n        if\
+    \ abs(self.cell_count['X'] - self.cell_count['O']) > 1:\n            return 'Impossible'\n\
+    \        if x_wins + o_wins > 1:\n            return 'Impossible'\n        # If\
+    \ we are not in an impossible state, return the winner, if any\n        if x_wins\
+    \ > o_wins:\n            return 'X wins'\n        elif o_wins > x_wins:\n    \
+    \        return 'O wins'\n        # And finally check if the game has not finished\
+    \ or if it is a draw based on empty spaced\n        if self.cell_count['_'] >\
+    \ 0:\n            return 'Game not finished'\n        elif self.cell_count['_']\
+    \ == 0:\n            return 'Draw'\n        raise nc\n\n\nif __name__ == '__main__':\n\
+    \    board = TicTacToe(input())\n    board.print_board()"
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/73/stages/402/implement
-status: Unchecked
-record: -1
+status: Failed
+record: 4

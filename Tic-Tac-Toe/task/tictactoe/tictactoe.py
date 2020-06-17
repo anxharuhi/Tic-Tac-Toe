@@ -1,29 +1,25 @@
-from string import Template
-
-
 class TicTacToe:
 
     def __init__(self, initial_state):
         initial_state = list(initial_state)
-        initial_state.reverse()
-        self.state = {}
+        self.state = []
         self.cell_count = {'X': 0, 'O': 0, '_': 0}
-        for row in range(1, 4):
-            self.state[row] = {}
-            for column in 'ABC':
-                self.state[row][column] = initial_state.pop()
+        for row in range(0, 3):
+            self.state.append([])
+            for column in range(0,3):
+                self.state[row].append(initial_state.pop())
                 self.cell_count[self.state[row][column]] += 1
+            self.state[row].reverse()
+        self.state.reverse()
         # self.state = {'n' + str(key): value for key, value in enumerate(iterable=list(initial_state), start=1)}
 
     def print_board(self):
         # pass
-        board_template = Template('| $A $B $C |')
         print('---------')
         for row in self.state:
-            # pass
-            print(board_template.safe_substitute(self.state[row]))
+            print(f'| {row[0]} {row[1]} {row[2]} |')
         print('---------')
-        print(self.evaluate_wins())
+        # print(self.evaluate_wins())
 
     def evaluate_wins(self):
         x_wins = 0
@@ -31,24 +27,24 @@ class TicTacToe:
         nc = Exception('Case not covered')
         # Determine how many lines have a 3 in a row of a character
         for row in self.state:
-            if self.state[row]['A'] == self.state[row]['B'] and self.state[row]['A'] == self.state[row]['C']:
-                if self.state[row]['A'] == 'X':
+            if row[0] == row[1] and row[1] == row[2]:
+                if row[0] == 'X':
                     x_wins += 1
                 else:
                     o_wins += 1
-        for column in 'ABC':
-            if self.state[1][column] == self.state[2][column] and self.state[1][column] == self.state[3][column]:
+        for column in range(len(self.state[0])):
+            if self.state[0][column] == self.state[1][column] and self.state[1][column] == self.state[2][column]:
                 if self.state[1][column] == 'X':
                     x_wins += 1
                 else:
                     o_wins += 1
-        if self.state[1]['A'] == self.state[2]['B'] and self.state[1]['A'] == self.state[3]['C']:
-            if self.state[1]['A'] == 'X':
+        if self.state[0][0] == self.state[1][1] and self.state[1][1] == self.state[2][2]:
+            if self.state[1][1] == 'X':
                 x_wins += 1
             else:
                 o_wins += 1
-        if self.state[1]['C'] == self.state[2]['B'] and self.state[1]['A'] == self.state[3]['A']:
-            if self.state[3]['A'] == 'X':
+        if self.state[0][2] == self.state[1][1] and self.state[1][1] == self.state[2][0]:
+            if self.state[1][1] == 'X':
                 x_wins += 1
             else:
                 o_wins += 1
@@ -68,9 +64,11 @@ class TicTacToe:
             return 'Game not finished'
         elif self.cell_count['_'] == 0:
             return 'Draw'
-        raise nc
+        # raise nc
 
 
 if __name__ == '__main__':
-    board = TicTacToe(input())
+    # board = TicTacToe(input())
+    board = TicTacToe('XXXOO__O_')
+    print(board.state[0][0])
     board.print_board()
