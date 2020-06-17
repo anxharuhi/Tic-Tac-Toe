@@ -1,19 +1,25 @@
 from string import Template
 
-
 class TicTacToe:
 
     def __init__(self, initial_state):
-        self.state = {'n' + str(key): value for key, value in enumerate(iterable=list(initial_state), start=1)}
-        self.board = Template('---------\n'
-                              '| $n1 $n2 $n3 |\n'
-                              '| $n4 $n5 $n6 |\n'
-                              '| $n7 $n8 $n9 |\n'
-                              '---------\n')
+        initial_state = list(initial_state)
+        initial_state.reverse()
+        self.state = {}
+        for row in range(1, 4):
+            self.state[row] = {}
+            for column in 'ABC':
+                self.state[row][column] = initial_state.pop()
+        # self.state = {'n' + str(key): value for key, value in enumerate(iterable=list(initial_state), start=1)}
 
     def print_board(self):
-        print(self.board.safe_substitute(self.state))
+        board_template = Template('| $A $B $C |')
+        print('---------')
+        for row in self.state:
+            print(board_template.safe_substitute(self.state[row]))
+        print('---------\n')
 
 
 board = TicTacToe(input())
+# board = TicTacToe('XXXOO__O_')
 board.print_board()
