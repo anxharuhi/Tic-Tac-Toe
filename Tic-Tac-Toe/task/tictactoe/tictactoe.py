@@ -13,11 +13,11 @@ class TicTacToe:
         self.state.reverse()
         # self.state = {'n' + str(key): value for key, value in enumerate(iterable=list(initial_state), start=1)}
 
-    def print_board(self):
-        print('---------')
-        for row in self.state:
-            print(f'| {row[0]} {row[1]} {row[2]} |')
-        print('---------')
+    # def print_board(self):
+    #     print('---------')
+    #     for row in self.state:
+    #         print(f'| {row[0]} {row[1]} {row[2]} |')
+    #     print('---------')
 
 
     def evaluate_wins(self):
@@ -86,15 +86,26 @@ class TicTacToe:
             self.cell_count['X'] += 1
             return [True, '']
 
+    def __str__(self):
+        board_str = '---------\n'
+        for row in self.state:
+            board_str += (f'| {row[0]} {row[1]} {row[2]} |\n')
+        board_str += ('---------')
+        return board_str
+
+    def __repr__(self):
+        board_repr = ''
+        for row in self.state:
+            board_repr += ''.join(row)
+        return board_repr
 
 if __name__ == '__main__':
     # board = TicTacToe(input())
     board = TicTacToe('XXXOO__O_')
-    print(board.state)
-    board.print_board()
+    print(board)
     moved = False
     while not moved:
         moved, msg = board.move(input('Enter the coordinates: '))
         if msg != '':
             print(msg)
-    board.print_board()
+    print(board)
