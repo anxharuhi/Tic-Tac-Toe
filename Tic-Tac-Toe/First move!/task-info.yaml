@@ -307,6 +307,9 @@ files:
     \ == 0:\n            return 'Draw'\n        raise nc\n\n\nif __name__ == '__main__':\n\
     \    board = TicTacToe(input())\n    board.print_board()"
   learner_created: true
+- name: tictactoe/scratch_pad.py
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/73/stages/402/implement
 status: Failed
 record: 4

@@ -14,12 +14,11 @@ class TicTacToe:
         # self.state = {'n' + str(key): value for key, value in enumerate(iterable=list(initial_state), start=1)}
 
     def print_board(self):
-        # pass
         print('---------')
         for row in self.state:
             print(f'| {row[0]} {row[1]} {row[2]} |')
         print('---------')
-        # print(self.evaluate_wins())
+
 
     def evaluate_wins(self):
         x_wins = 0
@@ -66,9 +65,36 @@ class TicTacToe:
             return 'Draw'
         # raise nc
 
+    def move(self, square):
+        try:
+            row, column = map(int, square.split(' '))
+            assert (1 <= row <= 3 and 1 <= column <= 3)
+        except ValueError:
+            return [False, 'You should enter numbers!']
+        except AssertionError:
+            return [False, 'Coordinates should be from 1 to 3!']
+        row -= 1
+        column -= 1
+        print('Current row: ' + str(row) + ' Current column: ' + str(column))
+        row = 2 - row # Account for the weird input requirements for the exercise
+        print('Current row after math: ' + str(row))
+        print(f'{self.state[0]}\n{self.state[1]}\n{self.state[2]}')
+        if self.state[row][column] != '_':
+            return[False, 'This cell is occupied! Choose another one!']
+        else:
+            self.state[row][column] = 'X'
+            self.cell_count['X'] += 1
+            return [True, '']
+
 
 if __name__ == '__main__':
     # board = TicTacToe(input())
     board = TicTacToe('XXXOO__O_')
-    print(board.state[0][0])
+    print(board.state)
+    board.print_board()
+    moved = False
+    while not moved:
+        moved, msg = board.move(input('Enter the coordinates: '))
+        if msg != '':
+            print(msg)
     board.print_board()
