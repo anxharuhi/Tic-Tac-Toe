@@ -67,7 +67,7 @@ class TicTacToe:
 
     def move(self, square):
         try:
-            row, column = map(int, square.split(' '))
+            column, row = map(int, square.split(' '))
             assert (1 <= row <= 3 and 1 <= column <= 3)
         except ValueError:
             return [False, 'You should enter numbers!']
@@ -75,10 +75,10 @@ class TicTacToe:
             return [False, 'Coordinates should be from 1 to 3!']
         row -= 1
         column -= 1
-        print('Current row: ' + str(row) + ' Current column: ' + str(column))
+        # print('Current row: ' + str(row) + ' Current column: ' + str(column))
         row = 2 - row # Account for the weird input requirements for the exercise
-        print('Current row after math: ' + str(row))
-        print(f'{self.state[0]}\n{self.state[1]}\n{self.state[2]}')
+        # print('Current row after math: ' + str(row))
+        # print(f'{self.state[0]}\n{self.state[1]}\n{self.state[2]}')
         if self.state[row][column] != '_':
             return[False, 'This cell is occupied! Choose another one!']
         else:
@@ -100,8 +100,8 @@ class TicTacToe:
         return board_repr
 
 if __name__ == '__main__':
-    # board = TicTacToe(input())
-    board = TicTacToe('XXXOO__O_')
+    board = TicTacToe(input())
+    # board = TicTacToe('XXXOO__O_')
     print(board)
     moved = False
     while not moved:
