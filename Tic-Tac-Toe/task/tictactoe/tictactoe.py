@@ -23,7 +23,6 @@ class TicTacToe:
         # Determine how many lines have a 3 in a row of a character
         for row in self.state:
             if row[0] == row[1] and row[1] == row[2]:
-                print('Row found')
                 if row[0] == 'X':
                     x_wins += 1
                 elif row[0] == 'O':
@@ -79,8 +78,8 @@ class TicTacToe:
         if self.state[row][column] != '_':
             return[False, 'This cell is occupied! Choose another one!']
         else:
-            self.state[row][column] = 'X'
-            self.cell_count['X'] += 1
+            self.state[row][column] = self.player
+            self.cell_count[self.player] += 1
             return [True, '']
 
     def play(self):
@@ -95,9 +94,10 @@ class TicTacToe:
                     print(msg)
             print(self.player)
             self.player = players[self.player]
-            print('Win before: ', win)
+            print(self.player)
+            # print('Win before: ', win)
             win = self.evaluate_wins()
-            print('Win after: ', win)
+            # print('Win after: ', win)
         print(self)
         print(win)
 
