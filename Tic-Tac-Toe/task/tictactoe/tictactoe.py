@@ -46,11 +46,8 @@ class TicTacToe:
         # A game is in an impossible state if a player has more than 1 extra move
         # or if the board has multiple 3 in a rows.
         if abs(self.cell_count['X'] - self.cell_count['O']) > 1:
-            # print('Cell count X: ', self.cell_count['X'], '\nCell count O: ', self.cell_count['O'])
             return self.board_states['impossible']
         if x_wins + o_wins > 1:
-            print('X wins: ', x_wins, '\nO wins: ', o_wins)
-            print('Cell count X: ', self.cell_count['X'], '\nCell count O: ', self.cell_count['O'])
             return self.board_states['impossible']
         # If we are not in an impossible state, return the winner, if any
         if x_wins > o_wins:
@@ -80,24 +77,21 @@ class TicTacToe:
         else:
             self.state[row][column] = self.player
             self.cell_count[self.player] += 1
+            self.cell_count['_'] -= 1
             return [True, '']
 
     def play(self):
         win = self.board_states['notfinished']
         players = {'X': 'O', 'O': 'X'}
-        while win != self.board_states['xwin'] or win != self.board_states['owin'] or win != self.board_states['draw']:
+        while win == self.board_states['notfinished']:
             print(self)
             moved = False
             while not moved:
                 moved, msg = board.move(input('Enter the coordinates: '))
                 if msg != '':
                     print(msg)
-            print(self.player)
             self.player = players[self.player]
-            print(self.player)
-            # print('Win before: ', win)
             win = self.evaluate_wins()
-            # print('Win after: ', win)
         print(self)
         print(win)
 

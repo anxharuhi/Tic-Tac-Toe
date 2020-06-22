@@ -13,7 +13,7 @@ class Movement:
 def test_win_conditions():
     test_win_cases = {'XXXOO__O_': 'X wins', 'XOXOXOXXO': 'X wins', 'XOOOXOXXO': 'O wins',
                       'XOXOOXXXO': 'Draw', 'XO_OOX_X_': 'Game not finished', 'XO_XO_XOX': 'Impossible',
-                      '_O_X__X_X': 'Impossible', '_OOOO_X_X': 'Impossible'}
+                      '_O_X__X_X': 'Impossible', '_OOOO_X_X': 'Impossible', 'XXOOOXXXO': 'Draw'}
     case_number = 1
 
     for case in test_win_cases:

@@ -540,5 +540,5 @@ files:
         print(board)
   learner_created: true
 feedback_link: https://hyperskill.org/projects/73/stages/403/implement
-status: Failed
+status: Solved
 record: -1
