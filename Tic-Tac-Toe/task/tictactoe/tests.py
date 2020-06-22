@@ -86,7 +86,7 @@ if __name__ == '__main__':
     print('-------------------------')
     print('| ' + Fore.BLUE + 'Player movement tests' + Fore.RESET + ' |')
     print('-------------------------\n')
-    test_board_movement()
+    # test_board_movement()
 
 # board = TicTacToe('XOXOXOXXO_')
 # board.print_board()
