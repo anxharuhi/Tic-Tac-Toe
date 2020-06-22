@@ -1,6 +1,1 @@
 https://github.com/hyperskill/hs-test-python/archive/v2.0.1.tar.gz
-
-pip~=20.0.2
-lxml~=4.5.0
-setuptools~=41.2.0
-colorama~=0.4.1

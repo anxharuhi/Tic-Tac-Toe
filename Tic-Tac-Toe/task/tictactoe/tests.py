@@ -79,12 +79,12 @@ def test_board_movement():
 
 if __name__ == '__main__':
     print('-----------------------')
-    print('| ' + Fore.BLUE + 'Win Condition tests |' + Fore.RESET)
+    print('| ' + Fore.BLUE + 'Win Condition tests' + Fore.RESET + ' |')
     print('-----------------------\n')
     test_win_conditions()
     print('\n')
     print('-------------------------')
-    print('| ' + Fore.BLUE + 'Player movement tests |' + Fore.RESET)
+    print('| ' + Fore.BLUE + 'Player movement tests' + Fore.RESET + ' |')
     print('-------------------------\n')
     test_board_movement()
 
